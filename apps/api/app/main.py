@@ -1,5 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+
+from app.database import check_database_connection
 
 app = FastAPI(
     title="AI Technology Research API",
@@ -24,3 +26,15 @@ def root() -> dict[str, str]:
 @app.get("/health", tags=["system"])
 def health() -> dict[str, str]:
     return {"status": "ok", "service": "atr-api"}
+
+
+@app.get("/health/ready", tags=["system"])
+def readiness() -> dict[str, str]:
+    try:
+        check_database_connection()
+    except Exception as exc:
+        raise HTTPException(
+            status_code=503,
+            detail={"status": "not_ready", "database": "unavailable"},
+        ) from exc
+    return {"status": "ready", "database": "connected"}
