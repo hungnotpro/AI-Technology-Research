@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import check_database_connection
+from app.organization import router as organization_router
 
 app = FastAPI(
     title="AI Technology Research API",
@@ -38,3 +39,6 @@ def readiness() -> dict[str, str]:
             detail={"status": "not_ready", "database": "unavailable"},
         ) from exc
     return {"status": "ready", "database": "connected"}
+
+
+app.include_router(organization_router)
