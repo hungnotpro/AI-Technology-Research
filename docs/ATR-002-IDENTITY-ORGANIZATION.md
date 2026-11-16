@@ -56,11 +56,11 @@ These are read-only directory endpoints. They do not execute agents, grant permi
 
 ## Acceptance checklist
 
-- [ ] Migration `0002_organization` applies successfully on the local Docker database.
-- [ ] `GET /api/v1/organization` returns Owner as root with the approved reporting structure.
-- [ ] `GET /api/v1/agents` returns exactly ten active agents.
-- [ ] API tests and frontend build pass in GitHub Actions.
-- [ ] Owner verifies the endpoints from the local Windows environment.
+- [x] Migration `0002_organization` applies successfully on the local Docker database (Owner verified).
+- [x] `GET /api/v1/organization` returns Owner as root with the approved reporting structure (Owner verified).
+- [x] `GET /api/v1/agents` returns exactly ten active agents (Owner verified).
+- [x] API tests and frontend build pass in GitHub Actions.
+- [x] Owner verifies the endpoints from the local Windows environment.
 
 ## Out of scope
 
