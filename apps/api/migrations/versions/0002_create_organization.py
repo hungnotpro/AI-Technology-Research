@@ -82,6 +82,10 @@ def upgrade() -> None:
              "parent_id": 3, "autonomy_level": "independent_review", "approval_required": False, "sort_order": 10, "is_active": True},
         ],
     )
+    op.execute(
+        "SELECT setval(pg_get_serial_sequence('organization_nodes', 'id'), "
+        "(SELECT MAX(id) FROM organization_nodes))"
+    )
 
 
 def downgrade() -> None:
