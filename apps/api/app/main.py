@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import check_database_connection
 from app.organization import router as organization_router
+from app.work_management import router as work_management_router
 
 app = FastAPI(
     title="AI Technology Research API",
@@ -42,3 +43,4 @@ def readiness() -> dict[str, str]:
 
 
 app.include_router(organization_router)
+app.include_router(work_management_router)
